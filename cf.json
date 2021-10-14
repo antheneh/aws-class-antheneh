@@ -10,7 +10,7 @@
                 "Tags" :[ {"Key" : "stack", "value" : "dev"}]
             }
         },
-        "AwsclassIacSubnet" : {
+        "AwsclassIacPublicSubnet" : {
             "Type" : "AWS::EC2::Subnet",
             "Properties" : {
                "VpcId" : { "Ref" : "AwsClassIac" },
@@ -18,6 +18,35 @@
                "AvailabilityZone" : "us-east-1a",
                "Tags" : [ { "Key" : "stack", "Value" : "dev" } ]
             }
-         }      
+         },
+         "AwsclassIacpublicSubnet" : {
+            "Type" : "AWS::EC2::Subnet",
+            "Properties" : {
+               "AvailabilityZone" : "us-east-1a",
+               "CidrBlock" : "10.0.1.0/26",
+               "VpcId" : { "Ref" : "AwsClassIac" },
+               "Tags" : [ {"Key" : "stack", "Value" : "dev"}]     
         }
+    },
+        "RouteTableIac" : {
+            "Type" : "AWS::EC2::RouteTable",
+            "Properties" : {
+               "VpcId" : { "Ref" : "AwsClassIac" },
+               "Tags" : [ { "Key" : "stack", "Value" : "dev" } ]
     }
+},
+"EC2InstanceIac" : {
+    "Type" : "AWS::EC2::Instance",
+    "Properties" : {
+       "ImageId" : "ami-79fd7eee",
+       "KeyName" : "",
+       "BlockDeviceMappings" : [
+          {
+             "DeviceName" : "",
+             "Ebs" : {
+               "VolumeType" : "",
+               "Iops" : "",
+               "DeleteOnTermination" : "false",
+               "VolumeSize" : ""
+             }
+          }
